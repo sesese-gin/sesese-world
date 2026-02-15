@@ -7,7 +7,7 @@ const worksData = [
         title: "自室探索ゲーム",
         desc: "HTML/CSS/JS",
         image: "image-home/room_picture.jpg", // 画像がない場合は空文字か、デフォルト画像を指定
-        link: "my-room-game/index-game.html"
+        link: "https://sesese-gin.github.io/sesese-roomtour/"
     },
     {
         title: "Coming Soon...",
