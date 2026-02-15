@@ -1,0 +1,379 @@
+/* ▼ フォントの登録（チョークフォント） */
+@font-face {
+    font-family: 'MyChalkFont';
+    /* ファイルパスが正しいか確認してください */
+    src: url('Chalk-JP.otf');
+}
+
+header {
+    /* ▼ くっつく魔法の命令 */
+    position: sticky;
+    top: 0;           /* 画面の一番上にくっつく */
+    z-index: 50;      /* 他のコンテンツより手前に表示 */
+
+    /* ▼ デザイン（すりガラス風） */
+    background-color: rgba(26, 26, 26, 0.8); /* 背景を少し透けさせる */
+    backdrop-filter: blur(5px); /* 後ろをぼかす（これだけでプロっぽくなる！） */
+
+    /* ▼ 形の調整 */
+    width: 100%;
+    padding: 20px 20px; /* 上下の余白 */
+    margin-bottom: 60px; /* 下のコンテンツとの距離 */
+}
+
+/* ▼ 全体のリセット設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* ページ内リンクでスルッと動く */
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #111;
+    color: #eee;
+    overflow: hidden; /* 全体のスクロールバーを消す */
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+a:hover { opacity: 0.7; color: #ffd700; }
+
+/* ▼ コンテナ */
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* ----------------------------------
+   左側：固定ビジュアルエリア
+---------------------------------- */
+.left-side {
+    width: 45%;
+    height: 100%;
+    /* 画像パスを確認してください */
+    background-image: url('image-home/kame_picture.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.left-side::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4); /* フィルターを少し濃くしました */
+}
+
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    /* ▼ タイトルのロード時アニメーション */
+    animation: fadeInDown 1.5s ease forwards;
+    opacity: 0;
+}
+
+/* タイトル出現アニメーションの定義 */
+@keyframes fadeInDown {
+    0% { opacity: 0; transform: translate(-50%, -60%); }
+    100% { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.main-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 5px;
+    font-weight: 700;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.font-chalk { font-family: 'MyChalkFont', sans-serif; }
+.sub-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #ffd700;
+}
+
+
+/* ----------------------------------
+   右側：スクロールエリア（余白たっぷりVer.）
+---------------------------------- */
+.right-side {
+    width: 55%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #1a1a1a;
+    
+    /* ★ここを変更！余白を大幅に増やしました */
+    /* 上下 100px, 左右 15% (画面幅に応じて広がる) */
+    padding: 80px 40px; 
+}
+
+/* ナビゲーション */
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    gap: 40px; /* 間隔も少し広げた */
+    margin-bottom: 0; /* 下の余白も増やした */
+}
+nav a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 5px;
+}
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #ffd700;
+    transition: 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* 動きをかっこよく */
+}
+nav a:hover::after { width: 100%; }
+
+
+/* セクション共通 */
+.content-section {
+    margin-bottom: 150px; /* セクション間の余白もたっぷり */
+}
+
+h2 {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    border-left: 6px solid #ffd700;
+    padding-left: 20px;
+    margin-bottom: 50px;
+}
+
+.intro-text {
+    line-height: 2.2; /* 行間も広げて読みやすく */
+    font-size: 1.05rem;
+    color: #ccc;
+    letter-spacing: 0.05em;
+}
+
+
+/* Works */
+.works-grid {
+    display: grid;
+    /* カードの最小幅を少し広げてゆったり配置 */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px; /* カード間の隙間も広げた */
+}
+
+.work-card {
+    background: #252525;
+    border-radius: 12px;
+    overflow: hidden;
+    display: block;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.work-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    background: #2a2a2a;
+}
+
+.card-img {
+    height: 200px; /* 画像を少し大きく */
+    background-size: cover;
+    background-position: center;
+    transition: 0.4s;
+}
+.work-card:hover .card-img {
+    transform: scale(1.05); /* ホバーで画像が少し拡大 */
+}
+
+.card-text { padding: 25px; }
+.card-text h4 { margin-bottom: 10px; font-size: 1.2rem; }
+.card-text p { font-size: 0.85rem; color: #888; }
+
+
+/* Profile */
+.profile-box {
+    display: flex;
+    align-items: center;
+    gap: 40px; /* 間隔広げた */
+    background: #252525;
+    padding: 40px; /* 内側の余白広げた */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); /* 金色の光彩 */
+    filter: brightness(0.7);
+}
+
+.profile-info h4 { font-size: 1.8rem; margin-bottom: 15px; }
+.profile-info p { line-height: 1.8; color: #ccc; }
+
+/* フッター */
+footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ----------------------------------
+   ★スクロールアニメーション用の設定
+---------------------------------- */
+/* 初期状態：見えなくして、少し下にずらす */
+.js-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* 画面に入った時の状態：見えるようにして、元の位置に戻す */
+.js-fade-up.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 順番に表示させるための遅延設定（任意） */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+
+/* ▼ スマホ対応 */
+@media (max-width: 768px) {
+    body {
+        overflow: auto; /* hidden から auto に戻す */
+        height: auto;   /* 高さを固定しない */
+    }
+    .container { flex-direction: column; height: auto; }
+    .left-side { width: 100%; height: 350px; }
+    .overlay-text { width: 90%; }
+    .main-title { font-size: 2.8rem; }
+    
+    /* スマホでは余白を少し狭める */
+    .right-side { width: 100%; padding: 60px 8%; overflow-y: visible; }
+    nav ul { justify-content: center; margin-bottom: 60px; gap: 20px; }
+    .works-grid { grid-template-columns: 1fr; } /* スマホは1列 */
+    .profile-box { flex-direction: column; text-align: center; padding: 30px; }
+}
+
+/* ▼▼▼ ハンバーガーメニューのスタイル ▼▼▼ */
+
+/* 初期状態：スマホ用メニューとボタンは隠す */
+.hamburger-btn, .sp-nav {
+    display: none;
+}
+
+/* スマホサイズ（幅768px以下）の時だけ有効にする */
+@media (max-width: 768px) {
+    
+    /* 1. PC用メニューを消す */
+    .pc-nav { display: none; }
+
+    /* 2. ハンバーガーボタンを表示 */
+    .hamburger-btn {
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        z-index: 100; /* 最前面に */
+        cursor: pointer;
+        background: rgba(0,0,0,0.5); /* 半透明の背景 */
+        border-radius: 5px;
+    }
+
+    /* ボタンの中の三本線 */
+    .hamburger-btn span {
+        position: absolute;
+        left: 10px;
+        width: 20px;
+        height: 2px;
+        background-color: #fff;
+        transition: 0.3s;
+    }
+    /* 線の位置 */
+    .hamburger-btn span:nth-of-type(1) { top: 10px; }
+    .hamburger-btn span:nth-of-type(2) { top: 19px; }
+    .hamburger-btn span:nth-of-type(3) { top: 28px; }
+
+    /* ★ボタンが開いた時（×印になる） */
+    .hamburger-btn.active span:nth-of-type(1) {
+        top: 19px; transform: rotate(45deg);
+    }
+    .hamburger-btn.active span:nth-of-type(2) {
+        opacity: 0;
+    }
+    .hamburger-btn.active span:nth-of-type(3) {
+        top: 19px; transform: rotate(-45deg);
+    }
+
+    /* 3. スマホ用メニュー画面（全画面） */
+    .sp-nav {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(17, 17, 17, 0.95); /* 濃い背景 */
+        z-index: 90;
+        
+        /* アニメーションで隠す */
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+    }
+
+    /* メニューが開いた時 */
+    .sp-nav.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* メニューの中身 */
+    .sp-nav ul {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+    }
+    .sp-nav a {
+        font-size: 1.5rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        color: #fff;
+    }
+}

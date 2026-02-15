@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My World | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <meta property="og:title" content="My World | Sesese Portfolio">
+    <meta property="og:description" content="情報科学生のポートフォリオサイトです。自室探索ゲーム公開中。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://あなたのサイトのURL/">
+    
+    <meta property="og:image" content="https://あなたのドメイン/kame.JPG">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="image-home/kame_picture.jpg">
+</head>
+<body>
+
+    <div class="container">
+        <div class="left-side">
+            <div class="overlay-text">
+                <p class="sub-title font-chalk">Welcome to</p>
+                <h1 class="main-title">MY WORLD</h1>
+            </div>
+        </div>
+
+        <div class="right-side">
+           <header>
+                <nav class="pc-nav js-fade-up">
+                    <ul>
+                        <li><a href="#home">HOME</a></li>
+                        <li><a href="#works">WORKS</a></li>
+                        <li><a href="#profile">PROFILE</a></li>
+                    </ul>
+                </nav>
+
+                <div class="hamburger-btn" id="js-hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <nav class="sp-nav" id="js-sp-nav">
+                    <ul>
+                        <li><a href="#home" class="sp-nav-link">HOME</a></li>
+                        <li><a href="#works" class="sp-nav-link">WORKS</a></li>
+                        <li><a href="#profile" class="sp-nav-link">PROFILE</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <section id="home" class="hero-section">
+                    <h2 class="font-chalk js-fade-up">Hello, World.</h2> <p class="intro-text js-fade-up delay-1"> ここには私の作品と、<br>
+                        ちょっとした日常が詰まっています。<br>
+                        ゆっくりしていってください。
+                    </p>
+                </section>
+
+                <section id="works" class="content-section">
+                    <h3 class="js-fade-up">WORKS</h3>
+        
+                    <div class="works-grid" id="js-works-grid"></div>
+                </section>
+
+                <section id="profile" class="content-section">
+                    <h3 class="js-fade-up">PROFILE</h3> <div class="profile-box js-fade-up"> <img src="image-home/reco-do.png" alt="プロフィール画像" class="profile-img">
+                        <div class="profile-info">
+                            <h4 class="font-chalk">Sesese</h4>
+                            <p>Webデザイン勉強中の学生です。<br>面白いものを作るのが好きです。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <footer class="js-fade-up"> <p>&copy; 2026 Sesese Portfolio.</p>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    </body>
+</html>
