@@ -20,18 +20,28 @@ const worksData = [
 
 /* main.js に追記 */
 
-// ▼ HTMLを生成して表示する関数
 const renderWorks = () => {
     const worksGrid = document.getElementById('js-works-grid');
     
-    // データ1つ1つに対して処理をする（ループ）
+    // エラー防止：もしHTML側に要素がなかったら何もしない
+    if (!worksGrid) return;
+    
+    // リセット：中身を一度空にする（重複防止）
+    worksGrid.innerHTML = '';
+
     worksData.forEach(work => {
-        // 画像がない時のための背景色設定（仮）
+        // ▼ 背景画像の設定
         const bgStyle = work.image ? `background-image: url('${work.image}');` : 'background-color: #333;';
 
-        // HTMLのテンプレート（バッククォート `` で囲むと改行できる！）
+        // ▼ 【ここが改良点！】リンクが "http" から始まるなら、別タブで開く設定にする
+        // それ以外（#など）なら、そのままのタブで開く
+        let targetAttr = "";
+        if (work.link.startsWith("http")) {
+            targetAttr = 'target="_blank" rel="noopener noreferrer"';
+        }
+
         const html = `
-            <a href="${work.link}" class="work-card js-fade-up">
+            <a href="${work.link}" class="work-card js-fade-up" ${targetAttr}>
                 <div class="card-img" style="${bgStyle}"></div>
                 <div class="card-text">
                     <h4>${work.title}</h4>
@@ -40,7 +50,6 @@ const renderWorks = () => {
             </a>
         `;
 
-        // 生成したHTMLをグリッドに追加
         worksGrid.insertAdjacentHTML('beforeend', html);
     });
 };
